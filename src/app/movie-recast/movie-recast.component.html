@@ -1,0 +1,39 @@
+<!-- ----------------------- -->
+<div class="wrap">
+  <div id="chatWindow" class="container overflow-auto">
+    <div class="bubble left">
+      <p>Hi ! How may i assist you ?</p>
+    </div>
+    <div *ngFor="let response of responseArr">
+      <div class="bubble right">
+        <p>{{ response.results.nlp.source }}</p>
+      </div>
+      <div class="bubble left" *ngIf="check">
+        <p>{{ response.results.messages[0].content }}</p>
+      </div>
+    </div>
+  </div>
+  <div id="inputWindow" class="form">
+    <input id="inp" type="text" [(ngModel)]="question" name="" />
+    <input id="btn" type="button" (click)="askQuestion()" value="Send" />
+  </div>
+</div>
+<div id="list">
+  <ol *ngFor="let response of responseArr" class="messages gradient-multiline ">
+    <li class="ours talk-bubble triangle right-top">
+      {{ response.results.nlp.source }}
+    </li>
+    <li class="talk-bubble triangle left-top">
+      <p>{{ response.results.messages[0].content }}</p>
+    </li>
+  </ol>
+  <div id="inputWindow" class="form gradient-multiline">
+    <input
+      id="inp"
+      type="text"
+      placeholder="Type Here..."
+      [(ngModel)]="question"
+    />
+    <input id="btn" type="button" (click)="askQuestion()" value="Send" />
+  </div>
+</div>
